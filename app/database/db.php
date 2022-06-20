@@ -107,7 +107,7 @@ function create($table, $data){
     $stmt = executeQuery($sql, $data);
     $id = $stmt->insert_id;
    
-    dd($id);
+    /*dd($id); */
     return $id;
 }
 
@@ -159,7 +159,7 @@ function insert(){
 
 
 
-$data = [
+/*$data = [
     'admin' => 1,
     'username' => 'Rahulhack',
     'email' => 'hack@hack.com',
@@ -167,7 +167,7 @@ $data = [
 ];
 
 $id =  delete('users', 3);
-dd($id);
+dd($id); */
 
 /*insert();*/
 

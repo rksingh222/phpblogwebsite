@@ -1,5 +1,7 @@
 <?php include('path.php') ?>
 
+<?php include( ROOT_PATH . "/app/controllers/users.php") ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,29 +33,32 @@
     <?php include(ROOT_PATH . '/app/include/header.php') ?>
 
     <div class="auth-content">
-        <form action="" method="post">
+        <form action="register.php" method="post">
             <h1 class="form-title">Register</h1>
+
+            <?php include(ROOT_PATH . '/app/helpers/formErrors.php') ?>
+
             <!-- <div class="msg success error">
                 <li>Username required</li>
             </div> -->
             <div>
                 <label for="">Username</label>
-                <input type="text" name="username" id="" class="text-input">
+                <input type="text" name="username" id="" class="text-input" value="<?php echo $username ?>">
             </div>
             <div>
                 <label for="">email</label>
-                <input type="email" name="username" id="" class="text-input">
+                <input type="email" name="email" id="" class="text-input" value="<?php echo $email ?>">
             </div>
             <div>
                 <label for="">password</label>
-                <input type="password" name="password" id="" class="text-input">
+                <input type="password" name="password" id="" class="text-input" value="<?php echo $password ?>">
             </div>
             <div>
                 <label for="">password confirmation</label>
-                <input type="password" name="password-conf" id="" class="text-input">
+                <input type="password" name="password-conf" id="" class="text-input" value="<?php echo $passwordConf ?>">
             </div>
-            <button type="submit" class="btn big-btn">Register</button>
-            <p>Or <a href=<?php echo BASE_URL . "/login.php"?> >Sign In</a></p>
+            <button type="submit" name="register-btn" class="btn big-btn">Register</button>
+            <p>Or <a href=<?php echo BASE_URL . "/login.php"?>>Sign In</a></p>
         </form>
     </div>
 
