@@ -1,53 +1,49 @@
 <?php
+session_start();
 
 require('connect.php');
 
 /* when you are printing its dying be careful  call this when you do not require any more functions to work*/
-function dd($value){
-    echo "<pre>" , print_r($value,true) , "</pre>" ;
+function dd($value)
+{
+    echo "<pre>", print_r($value, true), "</pre>";
     die();
 }
 
-function executeQuery($sql, $data){
+function executeQuery($sql, $data)
+{
 
     global $conn;
 
-    echo "test";
     $stmt = $conn->prepare($sql);
     $values = array_values($data);
     $types = str_repeat('s', count($values));
     $stmt->bind_param($types, ...$values);
-    if($stmt->execute()){
-        echo "New record created";
-    }
-    else{
-        echo "unable to create record";
-    }
+    $stmt->execute();
 
 
     return $stmt;
 }
 
 
-function selectAll($table, $conditions = []){
+function selectAll($table, $conditions = [])
+{
 
     global $conn;
 
     $sql = "SELECT * FROM $table";
-    if(empty($conditions))
-    {
+    if (empty($conditions)) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
-
-    }else{
+    } else {
 
         $i = 0;
         foreach ($conditions as $key => $value) {
-            if($i == 0){
+            if ($i == 0) {
                 $sql = $sql . " WHERE $key=?";
-            }else{
+            } else {
                 $sql = $sql . " AND $key=?";
             }
             $i++;
@@ -57,35 +53,34 @@ function selectAll($table, $conditions = []){
 
         $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
-
     }
 }
 
-function selectOne($table, $conditions){
+function selectOne($table, $conditions)
+{
     global $conn;
     $sql = "SELECT * FROM $table";
-    
+
     $i = 0;
     foreach ($conditions as $key => $value) {
-            if($i == 0){
-                $sql = $sql . " WHERE $key=?";
-            }else{
-                $sql = $sql . " AND $key=?";
-            }
-            $i++;
+        if ($i == 0) {
+            $sql = $sql . " WHERE $key=?";
+        } else {
+            $sql = $sql . " AND $key=?";
         }
+        $i++;
+    }
 
-        $sql = $sql . " LIMIT 1";
+    $sql = $sql . " LIMIT 1";
 
-        $stmt = executeQuery($sql, $conditions);
+    $stmt = executeQuery($sql, $conditions);
 
-        $records = $stmt->get_result()->fetch_assoc();
-        return $records;
-
-    
+    $records = $stmt->get_result()->fetch_assoc();
+    return $records;
 }
 
-function create($table, $data){
+function create($table, $data)
+{
     global $conn;
 
     /* $sql = "INSERT INTO users SET username=?, admin=?, email=?, password=?" */
@@ -94,24 +89,24 @@ function create($table, $data){
 
     $i = 0;
     foreach ($data as $key => $value) {
-        if($i === 0){
+        if ($i === 0) {
             $sql = $sql . "$key=?";
-        }else{
+        } else {
             $sql = $sql . ", $key=?";
         }
         $i++;
     }
 
-    
+
 
     $stmt = executeQuery($sql, $data);
     $id = $stmt->insert_id;
-   
-    /*dd($id); */
+
     return $id;
 }
 
-function update($table, $id, $data){
+function update($table, $id, $data)
+{
     global $conn;
 
     /* $sql = "UPDATE users SET username=?, admin=?, email=?, password=? WHERE id=?"*/
@@ -120,9 +115,9 @@ function update($table, $id, $data){
 
     $i = 0;
     foreach ($data as $key => $value) {
-        if($i === 0){
+        if ($i === 0) {
             $sql = $sql . "$key=?";
-        }else{
+        } else {
             $sql = $sql . ", $key=?";
         }
         $i++;
@@ -131,11 +126,12 @@ function update($table, $id, $data){
     $sql = $sql . " WHERE id=?";
     $data['id'] = $id;
     $stmt = executeQuery($sql, $data);
-    
+
     return $stmt->affected_rows;
 }
 
-function delete($table, $id){
+function delete($table, $id)
+{
     global $conn;
 
     $sql = "DELETE FROM $table WHERE id=?";
@@ -143,6 +139,7 @@ function delete($table, $id){
 
     return $stmt->affected_rows;
 }
+
 
 /*
 function insert(){
@@ -170,5 +167,3 @@ $id =  delete('users', 3);
 dd($id); */
 
 /*insert();*/
-
-?>
