@@ -34,8 +34,9 @@ include(ROOT_PATH . "/app/database/db.php");
 
 <body>
 
-    <?php include(ROOT_PATH . '/app/include/header.php') ?>
-
+    <?php include(ROOT_PATH . '/app/include/header.php'); ?>
+    <?php include(ROOT_PATH . '/app/include/messages.php'); ?>
+   
     <!-- Page wrapper-->
     <div class="page-wrapper">
         <!-- post slider-->

@@ -1,4 +1,5 @@
 <?php include("path.php") ?>
+<?php include( ROOT_PATH . "/app/controllers/users.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,25 +30,30 @@
 <body>
     <?php include(ROOT_PATH . '/app/include/header.php') ?>
 
-    <div class="auth-content" >
-        <h1 class="form-title">Login</h1>
-        <form action="" method="post" >
+    <div class="auth-content">
+
+        <form action="login.php" method="post">
+
+            <h1 class="form-title">Login</h1>
+
+            <?php include(ROOT_PATH . '/app/helpers/formErrors.php') ?>
+            
             <div>
                 <label for="">Username</label>
-                <input type="text" name="username" id="" class="text-input" >
+                <input type="text" name="username" value="<?php echo $username; ?>" id="" class="text-input">
             </div>
             <div>
                 <label for="">password</label>
-                <input type="password" name="password" id="" class="text-input" >
+                <input type="password" name="password" value="<?php echo $password; ?>" id="" class="text-input">
             </div>
-           
-            <button type="submit" class="btn big-btn">Login</button>
-            <p>Or <a href=<?php echo BASE_URL . "/register.php"?> >Sign Up</a></p>
+
+            <button type="submit" name="login-btn" class="btn big-btn">Login</button>
+            <p>Or <a href=<?php echo BASE_URL . "/register.php" ?>>Sign Up</a></p>
         </form>
     </div>
 
 
-    
+
     <!--Jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

@@ -49,6 +49,20 @@ a{
     clear: both;
 }
 
+.msg{
+    margin: 5px auto;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    list-style: none;
+}
+.success{
+    border: 1px solid #3a6e3a;
+    color:#3a6e3a;
+    background-color: #bcf5bc;
+}
+
+
 /* header */
 
 

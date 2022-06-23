@@ -1,0 +1,79 @@
+header {
+    background: #01474a;
+}
+
+.admin-wrapper{
+    height: calc(100% - 66px);
+    border: 1px solid black;
+    display: flex;
+}
+
+.admin-wrapper  .sidebar {
+    flex: 2;
+    border: 1px solid red;
+    height: 100%;
+    background: #234a57;
+}
+.admin-wrapper .sidebar ul{
+    list-style: none;
+    color: aliceblue;
+}
+
+.admin-wrapper .sidebar ul li a{
+    text-decoration: none;
+    display: block;
+    padding: 18px;
+    border-bottom: 1px solid #004044;
+}
+
+.admin-wrapper .sidebar ul li a:hover{
+    background: #01474a;
+}
+
+.admin-wrapper .admin-content {
+    flex: 8;
+    border: 1px solid orange;
+    padding: 40px 100px 100px;
+}
+
+.admin-wrapper .admin-content .title{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.admin-wrapper .admin-content table{
+    width: 100%;
+    font-size: 1.1rem;
+    border-collapse: collapse;
+  
+}
+.admin-wrapper .admin-content table th, td{
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.edit{
+    color:green;
+}
+
+.delete{
+    color: red;
+}
+
+.publish{
+    color:#234a57;
+}
+
+.edit:hover, .delete:hover, .publish:hover{
+    text-decoration: underline;
+}
+
+.admin-wrapper .admin-content .content form div{
+    
+}
+
+form div{
+    margin-bottom: 15px;
+}
