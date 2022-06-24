@@ -1,5 +1,4 @@
 <?php include("../../path.php"); ?>
-<?php include( ROOT_PATH . "/app/controllers/topics.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Section - Manage Topic</title>
+    <title>Admin Section - Manage User</title>
 
 
     <!-- google fonts Lora and Candal -->
@@ -46,28 +45,31 @@
         <!-- admin content -->
         <div class="admin-content">
             <div class="button-group">
-                <a href="create.php" class="btn big-btn">Add Topic</a>
-                <a href="index.php" class="btn big-btn">Manage Topic</a>
+                <a href="create.php" class="btn big-btn">Add User</a>
+                <a href="index.php" class="btn big-btn">Manage User</a>
             </div>
             <div class="content">
-                <h3 class="title">Manage Topic</h3>
-                <?php include(ROOT_PATH . '/app/include/messages.php'); ?>
+                <h3 class="title">Manage Users</h3>
                 <table>
                     <thead>
                         <th>SN</th>
-                        <th>Topic</th>
+                        <th>Username</th>
+                        <th>Role</th>
                         <th colspan="2">Action</th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>poetry</td>
+                            <td>rahul</td>
+                            <td>Admin</td>
                             <td><a href="#" class="edit">edit</a></td>
                             <td><a href="#" class="delete">delete</a></td>
+                           
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Life Lesson</td>
+                            <td>singh</td>
+                            <td>Author</td>
                             <td><a href="#" class="edit">edit</a></td>
                             <td><a href="#" class="delete">delete</a></td>
                         </tr>
@@ -75,6 +77,7 @@
                 </table>
             </div>
         </div>
+
         <!-- admin content -->
 
     </div>

@@ -1,5 +1,4 @@
 <?php include("../../path.php"); ?>
-<?php include( ROOT_PATH . "/app/controllers/topics.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Section - Manage Topic</title>
+    <title>Admin Section - Manage Post</title>
 
 
     <!-- google fonts Lora and Candal -->
@@ -46,30 +45,34 @@
         <!-- admin content -->
         <div class="admin-content">
             <div class="button-group">
-                <a href="create.php" class="btn big-btn">Add Topic</a>
-                <a href="index.php" class="btn big-btn">Manage Topic</a>
+                <a href="create.php" class="btn big-btn">Add Post</a>
+                <a href="index.php" class="btn big-btn">Manage Post</a>
             </div>
             <div class="content">
-                <h3 class="title">Manage Topic</h3>
-                <?php include(ROOT_PATH . '/app/include/messages.php'); ?>
+                <h3 class="title">Manage Posts</h3>
                 <table>
                     <thead>
                         <th>SN</th>
-                        <th>Topic</th>
-                        <th colspan="2">Action</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th colspan="3">Action</th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>poetry</td>
+                            <td>this is the first post</td>
+                            <td>rahul</td>
                             <td><a href="#" class="edit">edit</a></td>
                             <td><a href="#" class="delete">delete</a></td>
+                            <td><a href="#" class="publish">publish</a></td>
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Life Lesson</td>
+                            <td>this is the second post</td>
+                            <td>singh</td>
                             <td><a href="#" class="edit">edit</a></td>
                             <td><a href="#" class="delete">delete</a></td>
+                            <td><a href="#" class="publish">publish</a></td>
                         </tr>
                     </tbody>
                 </table>

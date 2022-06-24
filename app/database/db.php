@@ -141,18 +141,62 @@ function delete($table, $id)
 }
 
 
-/*
-function insert(){
-    global $conn;
 
-    $sql = "INSERT INTO users (admin, username, email, password) VALUES (1, 'Singh', 'singh@singh.com', 'singh')";
+
+//function insert($table,$data){
+    /*global $conn;
+
+    $name = $data['title'];
+    $description = $data['description'];
+    $sql = "INSERT INTO topics (name, description) VALUES ('".$name."','".$description."')";
     if (mysqli_query($conn, $sql)) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }*/
+
+    /*global $conn; */
+
+    /* $sql = "INSERT INTO users SET username=?, admin=?, email=?, password=?" */
+
+    /* $sql = "INSERT INTO $table SET ";
+
+    $i = 0;
+    foreach ($data as $key => $value) {
+        if ($i === 0) {
+            $sql = $sql . "$key=?";
+        } else {
+            $sql = $sql . ", $key=?";
+        }
+        $i++;
     }
-}
-*/
+
+    
+
+   if($stmt = $conn->prepare($sql))
+   {
+    $values = array_values($data);
+    $types = str_repeat('s', 2);
+    $stmt->bind_param($types, ...$values);
+    $stmt->execute();
+    $id = $stmt->insert_id;
+    echo $id;
+
+   }
+   else{
+    $error = $conn->errno . ' ' . $conn->error;
+    echo $error; 
+   } */
+
+   
+
+    /*$stmt = executeQuery($sql, $data);
+    $id = $stmt->insert_id;*/
+
+
+    //return $id;
+//}
+
 
 
 
