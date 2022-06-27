@@ -1,4 +1,5 @@
 <?php include("../../path.php"); ?>
+<?php include( ROOT_PATH . "/app/controllers/posts.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +51,7 @@
             </div>
             <div class="content">
                 <h3 class="title">Add Post</h3>
-                <form action="" method="post">
+                <form action="create.php" method="post">
                     <div>
                         <label for="">title</label>
                         <input type="text" name="title" id="" class="text-input">
@@ -66,13 +67,15 @@
                     </div>
                     <div>
                         <label for="">topic</label>
-                        <select name="" id="" class="text-input">
-                            <option value="poetry">poetry</option>
-                            <option value="lifelesson">Life Lessons</option>
+                        <select name="topic_id" id="" class="text-input">
+                            <option value=""></option>
+                            <?php foreach ($topics as $key => $topic): ?>
+                            <option value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div>
-                        <button type="submit" class="btn big-btn">Add Post</button>
+                        <button type="submit" name="add-post" class="btn big-btn">Add Post</button>
                     </div>
                     
                 </form>

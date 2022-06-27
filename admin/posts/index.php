@@ -1,4 +1,5 @@
 <?php include("../../path.php"); ?>
+<?php include(ROOT_PATH . "/app/controllers/posts.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,23 +25,23 @@
     <link rel="stylesheet" href="css/recentpost.css" type="text/css">
     <link rel="stylesheet" href="css/footer.css" type="text/css">
     -->
-   
+
     <link rel="stylesheet" href="../../assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../assets/css/admin.css" type="text/css">
 
 </head>
 
 <body>
-    
 
-   <!-- admin header -->
-   <?php include(ROOT_PATH .  "/app/include/adminHeader.php"); ?>
+
+    <!-- admin header -->
+    <?php include(ROOT_PATH .  "/app/include/adminHeader.php"); ?>
 
     <!-- Page wrapper-->
     <div class="admin-wrapper">
 
         <!-- admin sidebar -->
-        <?php include(ROOT_PATH. "/app/include/adminSidebar.php"); ?>
+        <?php include(ROOT_PATH . "/app/include/adminSidebar.php"); ?>
 
         <!-- admin content -->
         <div class="admin-content">
@@ -58,22 +59,28 @@
                         <th colspan="3">Action</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>this is the first post</td>
-                            <td>rahul</td>
-                            <td><a href="#" class="edit">edit</a></td>
-                            <td><a href="#" class="delete">delete</a></td>
-                            <td><a href="#" class="publish">publish</a></td>
-                        </tr>
-                        <tr>
+                        <?php foreach ($posts as $key => $post) : ?>
+                            <tr>
+                                <td><?php echo $key + 1; ?></td>
+                                <td><?php echo $post['title']; ?></td>
+                                <td>rahul</td>
+                                <td><a href="#" class="edit">edit</a></td>
+                                <td><a href="#" class="delete">delete</a></td>
+                                <?php if ($post['published']) : ?>
+                                    <td><a href="#" class="unpublish">unpublish</a></td>
+                                <?php else : ?>
+                                    <td><a href="#" class="publish">publish</a></td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                        <!--<tr>
                             <td>1</td>
                             <td>this is the second post</td>
                             <td>singh</td>
                             <td><a href="#" class="edit">edit</a></td>
                             <td><a href="#" class="delete">delete</a></td>
                             <td><a href="#" class="publish">publish</a></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

@@ -51,15 +51,18 @@
             </div>
             <div class="content">
                 <h3 class="title">Add Topic</h3>
+
+                <?php include(ROOT_PATH . '/app/helpers/formErrors.php') ?>
+
                 <form action="create.php" method="post">
                     <div>
                         <label for="">Topic</label>
-                        <input type="text" name="name" id="" class="text-input">
+                        <input type="text" name="name" id="" class="text-input" value="<?php echo $name; ?>">
                     </div>
 
                     <div>
                         <label for="">Description</label>
-                        <textarea name="description" id="body"></textarea>
+                        <textarea name="description" id="body"><?php echo $description; ?></textarea>
                     </div>
                     <div>
                         <button type="submit" name="add-topic" class="btn big-btn">Add Topic</button>

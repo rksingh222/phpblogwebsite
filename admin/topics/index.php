@@ -59,18 +59,14 @@
                         <th colspan="2">Action</th>
                     </thead>
                     <tbody>
+                        <?php foreach ($topics as $key => $topic): ?>
                         <tr>
-                            <td>1</td>
-                            <td>poetry</td>
-                            <td><a href="#" class="edit">edit</a></td>
-                            <td><a href="#" class="delete">delete</a></td>
+                            <td><?php echo $key + 1; ?></td>
+                            <td><?php echo $topic['name']; ?></td>
+                            <td><a href="edit.php?id=<?php echo $topic['id']; ?>" class="edit">edit</a></td>
+                            <td><a href="index.php?del_id=<?php echo $topic['id']; ?>" class="delete">delete</a></td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Life Lesson</td>
-                            <td><a href="#" class="edit">edit</a></td>
-                            <td><a href="#" class="delete">delete</a></td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -1,6 +1,6 @@
-<?php 
+<?php
 include("path.php");
-include(ROOT_PATH . "/app/database/db.php");
+include( ROOT_PATH . "/app/controllers/topics.php");
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ include(ROOT_PATH . "/app/database/db.php");
 
     <?php include(ROOT_PATH . '/app/include/header.php'); ?>
     <?php include(ROOT_PATH . '/app/include/messages.php'); ?>
-   
+
     <!-- Page wrapper-->
     <div class="page-wrapper">
         <!-- post slider-->
@@ -154,13 +154,17 @@ include(ROOT_PATH . "/app/database/db.php");
                 <div class="section topics">
                     <h2 class="section-title">Topics</h2>
                     <ul>
-                        <li><a href="">Poems</a></li>
-                        <li><a href="#">Quote</a></li>
+                        <?php foreach ($topics as $key => $topic) : ?>
+                            <li><a href=""><?php echo $topic['name']; ?></a></li>
+                        <?php endforeach; ?>
+
+
+                        <!-- <li><a href="#">Quote</a></li>
                         <li><a href="#">Fiction</a></li>
                         <li><a href="#">Bography</a></li>
                         <li><a href="#">Motivation</a></li>
                         <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Life Lessons</a></li>
+                        <li><a href="#">Life Lessons</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -174,7 +178,7 @@ include(ROOT_PATH . "/app/database/db.php");
     <?php include(ROOT_PATH . '/app/include/footer.php') ?>
 
 
-   
+
     <!--Jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
