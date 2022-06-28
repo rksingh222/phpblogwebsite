@@ -1,5 +1,5 @@
 <?php include("../../path.php"); ?>
-<?php include( ROOT_PATH . "/app/controllers/posts.php") ?>
+<?php include(ROOT_PATH . "/app/controllers/posts.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,23 +25,23 @@
     <link rel="stylesheet" href="css/recentpost.css" type="text/css">
     <link rel="stylesheet" href="css/footer.css" type="text/css">
     -->
-   
+
     <link rel="stylesheet" href="../../assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../assets/css/admin.css" type="text/css">
 
 </head>
 
 <body>
-    
 
-   <!-- admin header -->
-   <?php include(ROOT_PATH .  "/app/include/adminHeader.php"); ?>
+
+    <!-- admin header -->
+    <?php include(ROOT_PATH .  "/app/include/adminHeader.php"); ?>
 
     <!-- Page wrapper-->
     <div class="admin-wrapper">
 
         <!-- admin sidebar -->
-        <?php include(ROOT_PATH. "/app/include/adminSidebar.php"); ?>
+        <?php include(ROOT_PATH . "/app/include/adminSidebar.php"); ?>
 
         <!-- admin content -->
         <div class="admin-content">
@@ -51,15 +51,16 @@
             </div>
             <div class="content">
                 <h3 class="title">Add Post</h3>
+                <?php include(ROOT_PATH . "/app/helpers/formErrors.php") ?>
                 <form action="create.php" method="post">
                     <div>
                         <label for="">title</label>
-                        <input type="text" name="title" id="" class="text-input">
+                        <input type="text" name="title" value="<?php echo $title; ?>" id="" class="text-input">
                     </div>
 
                     <div>
                         <label for="">body</label>
-                        <textarea name="body" id="body"></textarea>
+                        <textarea name="body" id="body"><?php echo $body; ?></textarea>
                     </div>
                     <div>
                         <label>Image</label>
@@ -69,15 +70,25 @@
                         <label for="">topic</label>
                         <select name="topic_id" id="" class="text-input">
                             <option value=""></option>
-                            <?php foreach ($topics as $key => $topic): ?>
-                            <option value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
+                            <?php foreach ($topics as $key => $topic) : ?>
+                                <?php if ((!empty($topic_id) && $topic_id == $topic['id'])) : ?>
+                                    <option selected value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
+                                <?php else: ?>
+                                    <option value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div>
+                        <label for="">
+                            <input type="checkbox" name="published" id="">
+                            publish
+                        </label>
+                    </div>
+                    <div>
                         <button type="submit" name="add-post" class="btn big-btn">Add Post</button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
