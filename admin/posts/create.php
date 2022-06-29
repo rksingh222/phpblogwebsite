@@ -52,7 +52,7 @@
             <div class="content">
                 <h3 class="title">Add Post</h3>
                 <?php include(ROOT_PATH . "/app/helpers/formErrors.php") ?>
-                <form action="create.php" method="post">
+                <form action="create.php" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="">title</label>
                         <input type="text" name="title" value="<?php echo $title; ?>" id="" class="text-input">
@@ -73,17 +73,25 @@
                             <?php foreach ($topics as $key => $topic) : ?>
                                 <?php if ((!empty($topic_id) && $topic_id == $topic['id'])) : ?>
                                     <option selected value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <option value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div>
-                        <label for="">
-                            <input type="checkbox" name="published" id="">
-                            publish
-                        </label>
+                        <?php if (empty($published)) : ?>
+                            <label for="">
+                                <input type="checkbox" name="published" id="">
+                                publish
+                            </label>
+                        <?php else : ?>
+                            <label for="">
+                                <input type="checkbox" name="published" checked id="">
+                                publish
+                            </label>
+                        <?php endif; ?>
+
                     </div>
                     <div>
                         <button type="submit" name="add-post" class="btn big-btn">Add Post</button>

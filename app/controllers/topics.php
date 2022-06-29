@@ -9,6 +9,7 @@ $id = '';
 $name = '';
 $description = '';
 
+
 $topics = selectAll($table);
 
 
