@@ -12,7 +12,13 @@
     $existingTopic = selectOne('topics',['name' => $topic['name']]);  
 
     if($existingTopic){
-        array_push($errors, "name already exists");
+        if(isset($topic['update-topic']) && $existingTopic['id'] != $topic['id']){
+            array_push($errors, "name already exists");
+        }
+        if(isset($topic['add-topic'])){
+            array_push($errors, "name already exists");
+        }
+        
     }
 
     return $errors;

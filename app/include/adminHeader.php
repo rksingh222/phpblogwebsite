@@ -5,10 +5,11 @@
     <i class="fa-solid fa-bars menu-toggle"></i>
 
     <ul class="nav">
+        <?php if(isset($_SESSION['username'])): ?>
         <li>
             <a href="#">
                 <i class="fa-solid fa-user"></i>
-                Rahul Singh
+                <?php echo $_SESSION['username']; ?>
                 <i class="fa-solid fa-chevron-down"></i>
             </a>
             <ul>
@@ -16,5 +17,6 @@
                 <li><a href="#" class="logout">Logout</a></li>
             </ul>
         </li>
+        <?php endif; ?>
     </ul>
 </header>

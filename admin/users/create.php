@@ -1,4 +1,5 @@
 <?php include("../../path.php"); ?>
+<?php include(ROOT_PATH . "/app/controllers/users.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,23 +25,23 @@
     <link rel="stylesheet" href="css/recentpost.css" type="text/css">
     <link rel="stylesheet" href="css/footer.css" type="text/css">
     -->
-   
+
     <link rel="stylesheet" href="../../assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../assets/css/admin.css" type="text/css">
 
 </head>
 
 <body>
-    
 
-   <!-- admin header -->
-   <?php include(ROOT_PATH .  "/app/include/adminHeader.php"); ?>
+
+    <!-- admin header -->
+    <?php include(ROOT_PATH .  "/app/include/adminHeader.php"); ?>
 
     <!-- Page wrapper-->
     <div class="admin-wrapper">
 
         <!-- admin sidebar -->
-        <?php include(ROOT_PATH. "/app/include/adminSidebar.php"); ?>
+        <?php include(ROOT_PATH . "/app/include/adminSidebar.php"); ?>
 
         <!-- admin content -->
         <div class="admin-content">
@@ -50,34 +51,43 @@
             </div>
             <div class="content">
                 <h3 class="title">Add User</h3>
+                <?php include(ROOT_PATH . '/app/helpers/formErrors.php') ?>
                 <form action="" method="post">
                     <div>
                         <label for="">Username</label>
-                        <input type="text" name="username" id="" class="text-input" >
+                        <input type="text" name="username" value="<?php echo $username; ?>" id="" class="text-input">
                     </div>
                     <div>
                         <label for="">email</label>
-                        <input type="email" name="username" id="" class="text-input" >
+                        <input type="email" name="email" value="<?php echo $email; ?>" id="" class="text-input">
                     </div>
                     <div>
                         <label for="">password</label>
-                        <input type="password" name="password" id="" class="text-input" >
+                        <input type="password" name="password" value="<?php echo $password; ?>" id="" class="text-input">
                     </div>
                     <div>
                         <label for="">password confirmation</label>
-                        <input type="password" name="password-conf" id="" class="text-input" >
+                        <input type="password" name="password-conf" value="<?php echo $passwordConf; ?>" id="" class="text-input">
                     </div>
                     <div>
-                        <label for="">Role</label>
-                        <select name="" id="" class="text-input">
-                            <option value="admin">Admin</option>
-                            <option value="author">Author</option>
-                        </select>
+                        <?php if (isset($admin) && $admin == 1) : ?>
+                            <label for="">
+                                <input type="checkbox" checked name="admin">
+                                Admin
+                            </label>
+                        <?php else : ?>
+                            <label for="">
+                                <input type="checkbox" name="admin">
+                                Admin
+                            </label>
+                        <?php endif; ?>
+
+
                     </div>
                     <div>
-                        <button type="submit" class="btn big-btn">Add User</button>
+                        <button type="submit" name="create-admin" class="btn big-btn">Add User</button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

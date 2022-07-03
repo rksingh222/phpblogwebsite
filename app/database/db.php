@@ -123,6 +123,7 @@ function update($table, $id, $data)
         $i++;
     }
 
+    
     $sql = $sql . " WHERE id=?";
     $data['id'] = $id;
     $stmt = executeQuery($sql, $data);
@@ -211,3 +212,27 @@ $id =  delete('users', 3);
 dd($id); */
 
 /*insert();*/
+
+/*function updateQuery($table, $id, $data)
+{
+    global $conn;
+
+    $published = $data['published'];
+    $sql = "UPDATE posts SET published=$published WHERE id=$id";
+     UPDATE posts SET published=0 WHERE id=7 
+    dd($sql); 
+    
+    $sql = "UPDATE posts SET published='".$published."' WHERE id='".$id."'";
+  
+    dd($sql);
+    UPDATE posts SET published='0' WHERE id='7'
+    UPDATE posts SET published='0' where id='7'; working
+   
+    if (mysqli_query($conn, $sql)) {
+        echo "record update sucessfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+
+}*/
