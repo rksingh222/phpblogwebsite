@@ -1,6 +1,19 @@
 <?php
 include("path.php");
-include( ROOT_PATH . "/app/controllers/topics.php");
+include(ROOT_PATH . "/app/controllers/topics.php");
+
+/*$posts = selectAll('posts', ['published' => 1]); */
+
+$posts = array();
+$postTitle = "Recent Post";
+
+if (isset($_POST['search-term'])) {
+    $postTitle = "You searched for '" . $_POST['search-term'] ."'";
+    $posts = searchPost($_POST['search-term']);
+} else {
+    $posts = getPublishedPost();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +58,18 @@ include( ROOT_PATH . "/app/controllers/topics.php");
             <i class="fa-solid fa-chevron-left prev"></i>
             <i class="fa-solid fa-chevron-right next"></i>
             <div class="post-wrapper">
-                <div class="post">
+                <?php foreach ($posts as $post) : ?>
+                    <div class="post">
+                        <img src="<?php echo BASE_URL . "/assets/images/" . $post['image']; ?>" alt="" class="slider-image">
+                        <div class="post-info">
+                            <h4><a href="#"><?php echo $post['title']; ?></a></h4>
+                            <i class="far fa-user"></i><?php echo $post['username']; ?>
+                            &nbsp;
+                            <i class="far fa-calendar"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <!--<div class="post">
                     <img src="assets/images/bg.jpg" alt="" class="slider-image">
                     <div class="post-info">
                         <h4><a href="#">One day your life will flash before your eyes</a></h4>
@@ -80,16 +104,7 @@ include( ROOT_PATH . "/app/controllers/topics.php");
                         &nbsp;
                         <i class="far fa-calendar"></i>June 11, 2022
                     </div>
-                </div>
-                <div class="post">
-                    <img src="assets/images/bg.jpg" alt="" class="slider-image">
-                    <div class="post-info">
-                        <h4><a href="#">One day your life will flash before your eyes</a></h4>
-                        <i class="far fa-user"></i>Rahul Singh
-                        &nbsp;
-                        <i class="far fa-calendar"></i>June 11, 2022
-                    </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <!-- // post slider-->
@@ -97,19 +112,22 @@ include( ROOT_PATH . "/app/controllers/topics.php");
         <!-- Content or Main Box -->
         <div class="content clearfix">
             <div class="main-content">
-                <h1 class="recent-post-title">Recent Posts</h1>
-                <div class="post clearfix">
-                    <img src="assets/images/bg.jpg" alt="" class="post-image">
-                    <div class="post-preview">
-                        <h3>the strongest and sweetest song yet remain to be sung</h3>
-                        <i class="fa fa-user"></i><span>Rahul Singh</span>
-                        <i class="fa fa-calendar"></i><span>6 June 2022</span>
-                        <p class="preview-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam odit
-                            deleniti cupiditate voluptatibus laudantium eum.</p>
-                        <a href="#" class="btn read-more">Read More</a>
+                <h1 class="recent-post-title"><?php echo $postTitle; ?></h1>
+                <?php foreach ($posts as $post) : ?>
+                    <div class="post clearfix">
+                        <img src="<?php echo BASE_URL . "/assets/images/" . $post['image']; ?>" alt="" class="post-image">
+                        <div class="post-preview">
+                            <h4><?php echo $post['title']; ?></h4>
+                            <i class="fa fa-user"></i><span><?php echo $post['username']; ?></span>
+                            <i class="fa fa-calendar"></i><span><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
+                            <p class="preview-text">
+                                <?php echo html_entity_decode(substr($post['body'], 0, 150) . "..."); ?>
+                            </p>
+                            <a href="#" class="btn read-more">Read More</a>
+                        </div>
                     </div>
-                </div>
-                <div class="post clearfix">
+                <?php endforeach; ?>
+                <!--<div class="post clearfix">
                     <img src="assets/images/bg.jpg" alt="" class="post-image">
                     <div class="post-preview">
                         <h3>the strongest and sweetest song yet remain to be sung</h3>
@@ -142,12 +160,12 @@ include( ROOT_PATH . "/app/controllers/topics.php");
                             deleniti cupiditate voluptatibus laudantium eum.</p>
                         <a href="#" class="btn read-more">Read More</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="sidebar">
                 <div class="section search">
                     <h2 class="section-title">Search</h2>
-                    <form action="index.html" method="post">
+                    <form action="index.php" method="post">
                         <input type="text" placeholder="Search..." name="search-term" class="text-input">
                     </form>
                 </div>

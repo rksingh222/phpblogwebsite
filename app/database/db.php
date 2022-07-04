@@ -142,7 +142,24 @@ function delete($table, $id)
 }
 
 
+function getPublishedPost(){
+    /* select * from posts where published = 1 */
+    $sql = "SELECT p.*,u.username FROM posts AS p JOIN users AS u ON u.id=p.user_id WHERE p.published=?";
 
+    $stmt = executeQuery($sql, ["published" => 1]);
+
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+function searchPost($term){
+    $match = '%' . $term . '%';
+    $sql = "SELECT p.*,u.username FROM posts AS p JOIN users as u ON u.id=p.user_id WHERE p.published=? AND p.title LIKE ? OR p.body LIKE ?";
+    $stmt = executeQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match]);
+
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
 
 //function insert($table,$data){
     /*global $conn;
