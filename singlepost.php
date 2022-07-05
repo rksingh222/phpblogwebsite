@@ -1,4 +1,14 @@
 <?php include("path.php") ?>
+<?php
+include(ROOT_PATH . "/app/controllers/posts.php");
+if (isset($_GET['id'])) {
+    $post = selectOne('posts', ['id' => $_GET['id']]);
+}
+$posts = selectAll('posts', ['published' => 1]);
+$topics = selectALL('topics');
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $post['title']; ?> | BlogMe</title>
 
 
     <!-- google fonts Lora and Candal -->
@@ -22,160 +32,25 @@
     <!-- css -->
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="assets/css/singlepost.css" type="text/css">
-    
+
 
 
 </head>
 
 <body>
-    
+
     <?php include(ROOT_PATH . '/app/include/header.php') ?>
 
     <!-- Page wrapper-->
     <div class="page-wrapper">
         <!-- Content or Main Box -->
         <div class="content clearfix">
-            <div class="div-wrapper clear"> 
+            <div class="div-wrapper clear">
                 <div class="main-content single">
-                    <h1 class="post-title">this is the title of the post</h1>
+                    <h1 class="post-title"><?php echo $post['title']; ?></h1>
                     <div class="post-content">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi culpa molestiae numquam quod
-                            dolor
-                            quaerat.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt vitae dolores voluptatum odio
-                            vel
-                            maiores corrupti unde nulla, quae nam quam exercitationem porro aliquid perferendis possimus
-                            minima tempore fugiat! Mollitia!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam iste quis unde, tenetur
-                            temporibus
-                            voluptates?</p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse at voluptatem consectetur
-                            quidem,
-                            laudantium mollitia accusamus nesciunt, cumque voluptates nemo excepturi ea eum? Sed,
-                            beatae!
-                        </p>
+                        <?php echo html_entity_decode($post['body']) ?>
                     </div>
-
                 </div>
             </div>
             <div class="sidebar single">
@@ -183,20 +58,16 @@
                     <h2 class="section-title">
                         Popular
                     </h2>
-                    <div class="post clearfix">
-                        <img src="assets/images/bg.jpg" alt="">
-                        <a href="#">
-                            <h4>how to overcome fear</h4>
-                        </a>
-                    </div>
-                    <div class="post clearfix">
-                        <img src="assets/images/bg.jpg" alt="">
-                        <h4>how to overcome fear</h4>
-                    </div>
-                    <div class="post clearfix">
-                        <img src="assets/images/bg.jpg" alt="">
-                        <h4>how to overcome fear</h4>
-                    </div>
+                    <?php foreach ($posts as $p) : ?>
+                        <div class="post clearfix">
+                            <img src="<?php echo BASE_URL . "/assets/images/" . $p['image']; ?>" alt="">
+                            <a href="#" class="title">
+                                <h4><?php echo $p['title']; ?></h4>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <!--
                     <div class="post clearfix">
                         <img src="assets/images/bg.jpg" alt="">
                         <h4>how to overcome fear</h4>
@@ -205,17 +76,27 @@
                         <img src="assets/images/bg.jpg" alt="">
                         <h4>how to overcome fear</h4>
                     </div>
+                    <div class="post clearfix">
+                        <img src="assets/images/bg.jpg" alt="">
+                        <h4>how to overcome fear</h4>
+                    </div>
+                    <div class="post clearfix">
+                        <img src="assets/images/bg.jpg" alt="">
+                        <h4>how to overcome fear</h4>
+                    </div> -->
                 </div>
                 <div class="section topics">
                     <h2 class="section-title">Topics</h2>
                     <ul>
-                        <li><a href="">Poems</a></li>
-                        <li><a href="#">Quote</a></li>
+                        <?php foreach ($topics as $topic) : ?>
+                            <li><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&topic_name=' . $topic['name']; ?>"><?php echo $topic['name']; ?></a></li>
+                        <?php endforeach; ?>
+                        <!--<li><a href="#">Quote</a></li>
                         <li><a href="#">Fiction</a></li>
                         <li><a href="#">Bography</a></li>
                         <li><a href="#">Motivation</a></li>
                         <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Life Lessons</a></li>
+                        <li><a href="#">Life Lessons</a></li>-->
                     </ul>
                 </div>
             </div>
